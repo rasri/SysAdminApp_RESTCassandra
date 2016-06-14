@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="false">
+    <android.support.design.widget.AppBarLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
+            android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" android:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:weightSum="1"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:focusable="false">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="116dp"
+            android:id="@+id/systemLog"
+            android:layout_weight="0.39"
+            android:layout_gravity="center"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/systemLog"
+            android:clickable="true"
+            android:src="@mipmap/system_log"
+            android:foreground="@mipmap/system_log" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="116dp"
+            android:id="@+id/wfManager"
+            android:layout_weight="0.39"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:contentDescription="@string/wfManager"
+            android:clickable="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+
+        <ImageButton
+            android:layout_width="125dp"
+            android:layout_height="116dp"
+            android:id="@+id/systemStats"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:contentDescription="@string/systemStats"
+            android:clickable="true" />
+
+        <ImageButton
+            android:layout_width="125dp"
+            android:layout_height="116dp"
+            android:id="@+id/picoManager"
+            android:layout_gravity="center"
+            android:contentDescription="@string/picoViewer"
+            android:longClickable="true"
+            android:clickable="true" />
+    </LinearLayout>
+</LinearLayout>

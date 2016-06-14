@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">MZApp</string>
+    <string name="api_key">8f2a9b25f741c69b888217510d260a1c</string>
+    <!--<string name="web_service_url">http://api.openweathermap.org/data/2.5/forecast/daily?q=</string>-->
+    <string name="web_service_url">http://192.168.43.56:3000/services</string>
+    <string name="invalid_url">Invalid URL</string> <!-- If Url is invalid-->
+
+
+    <!-- image for severity for later use if time remain-->
+    <string name="severity_image">png image for severity </string>
+
+    <!-- Severity. Occured. Message . workflow. -->
+
+    <string name="dateMessage"> %1$s: %2$s  </string>
+    <string name="severity"> %s </string>
+    <string name="wfName"> %s </string>
+    <string name="picoName"> %s </string>
+    <string name="ipAdress"> %s </string>
+    <string name="hint_text">Enter Date </string>
+    <string name="read_error">Unable to read weather data</string>
+    <string name="connect_error">Unable to connect to REST Interface</string>
+    <string name="day"> Enter Day (e.g. Today) </string>
+    <string name="systemLog">systemLog</string>
+    <string name="wfManager">wfManager</string>
+    <string name="systemStats">systemStats</string>
+    <string name="picoViewer">picoManager</string>
+</resources>
