@@ -59,7 +59,7 @@ public class SysLogArrayAdapter extends ArrayAdapter<SysLog>{
         Context context = getContext(); // for loading String resources context for array adapter
         // set information
         viewHolder.dateMessageTextView.setText(context.getString(
-                R.string.dateMessage, item.dateMessage,item.dateMessage
+                R.string.dateMessage, item.date,item.dateMessage
         ));
         viewHolder.severityTextView.setText(context.getString(R.string.severity,item.severity));
         viewHolder.wfNameTextView.setText(context.getString(R.string.wfName, item.workflowName));

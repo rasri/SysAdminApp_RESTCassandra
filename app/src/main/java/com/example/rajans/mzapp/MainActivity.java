@@ -19,11 +19,13 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -77,24 +79,38 @@ public class MainActivity extends AppCompatActivity {
 
     public URL createURL(String day){
 
+        String urlString;
+        String baseUrl = getString(R.string.web_service_url);
+
         try {
-            System.out.println("Inputed day = " + day);
+            System.out.println("Input day = " + day);
+            String date;
 
-            /*switch (day) {
-                case ("Today") :
-                    return
-
+            switch (day.trim()) {
+                case("today"):
+                case("Today"):
+                    //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    //date = sdf.format(new Date());
+                    //break;
+                    date= "2016-06-13";
+                    break;
+                default:
+                    date = "all";
             }
-            if (day.equals("Today") || day.equals("today")){
 
-            }*/
+            urlString = baseUrl + URLEncoder.encode(date, "UTF-8");
 
+            //return new URL(getString(R.string.web_service_url));
+            System.out.println("urlString = " + urlString);
+            return new URL(urlString);
 
-            return new URL(getString(R.string.web_service_url));
-
-        } catch (MalformedURLException e) {
+        } catch (MalformedURLException e ) {
             e.printStackTrace();
+        } catch (UnsupportedEncodingException ex){
+            ex.printStackTrace();
         }
+
+
         return null; // Malformed exception thrown
     }
 
@@ -206,8 +222,8 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("severity_type = " + sysLog.getString("severity_type"));
                 System.out.println("wf_instance_name = " + sysLog.getString("wf_instance_name"));
                 System.out.println("pico_name = " + sysLog.getString("pico_name"));
-                System.out.println("pico_name = " + sysLog.getString("ip_address"));
-                System.out.println("pico_name = " + sysLog.getString("date"));
+                System.out.println("ip_address = " + sysLog.getString("ip_address"));
+                System.out.println("date = " + sysLog.getString("date"));
 
 
                 //sysLogList.addAll((Collection<? extends SysLog>) sysLogArray);
