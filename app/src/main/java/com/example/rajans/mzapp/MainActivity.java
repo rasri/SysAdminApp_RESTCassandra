@@ -1,6 +1,11 @@
 package com.example.rajans.mzapp;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -32,6 +37,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<SysLog> sysLogList = new ArrayList<>();
+    public static final int NOTIFICATION_ID = 314159;
 
 
     // ArrayAdapter for binding syslogList objects to a ListView
@@ -92,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     //date = sdf.format(new Date());
                     //break;
-                    date= "2016-06-13";
+                    date= "2016-06-15";
                     break;
                 default:
                     date = "all";
@@ -176,15 +182,6 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
-        // process JSON response and update ListView
-        /*@Override
-        protected void onPostExecute(JSONObject sysLog) {
-            System.out.println("onPostExecute -  " + sysLog.toString());
-            convertJSONtoArrayList(sysLog); // repopulate syslogList
-            sysLogArrayAdapter.notifyDataSetChanged(); // rebind to ListView
-            sysLogListView.smoothScrollToPosition(0); // scroll to top
-        }*/
-
 
         // process JSON response and update ListView
         @Override
@@ -204,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Create Weather objects from JSONObject containing the forecast
+    // Create SysLog objects from JSONObject containing the forecast
     // Here we have all the Syslog read from the system
     //private void convertJSONtoArrayList(JSONObject sysLog) {
     private void convertJSONtoArrayList(JSONArray sysLogArray) {
@@ -223,8 +220,12 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("wf_instance_name = " + sysLog.getString("wf_instance_name"));
                 System.out.println("pico_name = " + sysLog.getString("pico_name"));
                 System.out.println("ip_address = " + sysLog.getString("ip_address"));
-                System.out.println("date = " + sysLog.getString("date"));
+                System.out.println(" = " + sysLog.getString("date"));
 
+                if(sysLog.getString("severity_type").equals("2")){
+                    System.out.println("sysLog.getString(\"severity_type\") = " + sysLog.getString("severity_type"));
+                    notifyUser(sysLog.getString("message"));
+                }
 
                 //sysLogList.addAll((Collection<? extends SysLog>) sysLogArray);
                 sysLogList.add(new SysLog(
@@ -238,38 +239,30 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
-
-        //try {
-        //    if(sysLog!=null)
-        //        System.out.println("sysLog = " + sysLog.toString());
-        //    // get forecast's "list" JSONArray
-        //    //JSONArray list = sysLog.getJSONArray("list");
-        //
-        //
-        //    // convert each element of list to a Weather object
-        //    for (int i = 0; i < sysLog.length(); ++i) {
-        //        JSONObject oneLog = sysLog.getJSONObject(i); // get one log data
-        //
-        //        // get the  temperatures ("temp") JSONObject
-        //        //JSONObject temperatures = oneLog.getJSONObject("temp");
-        //
-        //        // get day's "weather" JSONObject for the description and icon
-        //        //JSONObject weather = oneLog.getJSONArray("weather").getJSONObject(0);
-        //
-        //        // add new Weather object to weatherList
-        //        sysLogList.add(new SysLog(
-        //                oneLog.getString("message"),
-        //                oneLog.getString("severity_type"),
-        //                oneLog.getString("wf_instance_name"),
-        //                oneLog.getString("pico_name"),
-        //                oneLog.getString("ip_address"),
-        //                oneLog.getString("date")));
-        //    }
-        //}
-        //catch (JSONException e) {
-        //    e.printStackTrace();
-        //}
     }
+
+    private void notifyUser(String message) {
+
+        Intent intent = new Intent(this, MyDesktop.class);
+        TaskStackBuilder tsb = TaskStackBuilder.create(this);
+        tsb.addParentStack(MyDesktop.class);
+        tsb.addNextIntent(intent);
+
+        PendingIntent pendingIntent = tsb.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        Notification notification = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.ic_done_24dp)
+                .setContentTitle(getString(R.string.app_name))
+                .setContentText(message)
+                .setAutoCancel(true)
+                .setTicker(message)
+                .setContentIntent(pendingIntent)
+                .build();
+
+        NotificationManager manager =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        manager.notify(NOTIFICATION_ID, notification);
+
+    }
+
 
 }

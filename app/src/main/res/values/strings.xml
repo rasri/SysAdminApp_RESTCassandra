@@ -2,7 +2,7 @@
     <string name="app_name">MZApp</string>
     <string name="api_key">8f2a9b25f741c69b888217510d260a1c</string>
     <!--<string name="web_service_url">http://api.openweathermap.org/data/2.5/forecast/daily?q=</string>-->
-    <string name="web_service_url">http://10.46.50.60:3000/service/</string>
+    <string name="web_service_url">http://10.240.32.45:3000/service/</string>
     <string name="invalid_url">Invalid URL</string> <!-- If Url is invalid-->
 
 
