@@ -11,6 +11,8 @@
 
     <!-- Severity. Occured. Message . workflow. -->
 
+    <string name="activeWf"> %s </string>
+
     <string name="dateMessage"> %1$s: %2$s  </string>
     <string name="severity"> %s </string>
     <string name="wfName"> %s </string>
@@ -24,4 +26,5 @@
     <string name="wfManager">wfManager</string>
     <string name="systemStats">systemStats</string>
     <string name="picoViewer">picoManager</string>
+    <string name="wfStop">Click me!</string>
 </resources>

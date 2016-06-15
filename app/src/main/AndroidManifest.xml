@@ -26,5 +26,16 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+
+
+        <activity
+            android:name=".WfManagerActivity"
+            android:label="Workflow Manager"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
     </application>
+
+
 </manifest>
